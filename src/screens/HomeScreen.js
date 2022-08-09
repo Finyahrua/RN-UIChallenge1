@@ -5,6 +5,7 @@ import {
   FlatList,
   Image,
   ScrollView,
+  TouchableOpacity,
 } from "react-native";
 import React from "react";
 import { MaterialCommunityIcons, Feather } from "@expo/vector-icons";
@@ -37,72 +38,78 @@ const Data = [
 ];
 const HomeScreen = () => {
   return (
-    <SafeAreaView className="mx-6 bg-white">
+    <SafeAreaView className=" bg-white">
       <ScrollView>
-        <View className="flex flex-row justify-between mt-2">
-          <MaterialCommunityIcons name="menu" size={26} color="black" />
-          <Feather name="search" size={26} color="black" />
+        <View className="mx-5">
+          <View className="flex flex-row justify-between mt-2">
+            <MaterialCommunityIcons name="menu" size={26} color="black" />
+            <Feather name="search" size={26} color="black" />
+          </View>
+          <Text className="font-bold text-3xl mt-7">Popular Now</Text>
+          <FlatList
+            data={Data}
+            keyExtractor={(item) => item.id}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            renderItem={({ item }) => {
+              return (
+                <TouchableOpacity>
+                  <View className="mt-4 mr-4">
+                    <Image
+                      source={item.image}
+                      style={{ height: 192, width: 142 }}
+                      className="rounded-lg"
+                    />
+                    <Text
+                      className="text-base font-bold mt-3"
+                      style={{ color: "#333" }}
+                    >
+                      {item.title}
+                    </Text>
+                    <Text
+                      className="text-xs font-bold mt-1"
+                      style={{ color: "#C1C0C3" }}
+                    >
+                      {item.author}
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              );
+            }}
+          />
+          <Text className="font-bold text-3xl mt-7">Bestsellers</Text>
+          <FlatList
+            data={Data}
+            keyExtractor={(item) => item.id}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            renderItem={({ item }) => {
+              return (
+                <TouchableOpacity>
+                  <View className="mt-4 mr-4">
+                    <Image
+                      source={item.image}
+                      style={{ height: 192, width: 142 }}
+                      className="rounded-lg"
+                    />
+                    <Text
+                      className="text-base font-bold mt-3"
+                      style={{ color: "#333" }}
+                    >
+                      {item.title}
+                    </Text>
+                    <Text
+                      className="text-xs font-bold mt-1"
+                      style={{ color: "#C1C0C3" }}
+                    >
+                      {item.author}
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              );
+            }}
+          />
         </View>
-        <Text className="font-bold text-3xl mt-7">Popular Now</Text>
-        <FlatList
-          data={Data}
-          keyExtractor={(item) => item.id}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          renderItem={({ item }) => {
-            return (
-              <View className="mt-4 mr-4">
-                <Image
-                  source={item.image}
-                  style={{ height: 192, width: 142 }}
-                  className="rounded-lg"
-                />
-                <Text
-                  className="text-base font-bold mt-3"
-                  style={{ color: "#333" }}
-                >
-                  {item.title}
-                </Text>
-                <Text
-                  className="text-xs font-bold mt-1"
-                  style={{ color: "#C1C0C3" }}
-                >
-                  {item.author}
-                </Text>
-              </View>
-            );
-          }}
-        />
-        <Text className="font-bold text-3xl mt-7">Bestsellers</Text>
-        <FlatList
-          data={Data}
-          keyExtractor={(item) => item.id}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          renderItem={({ item }) => {
-            return (
-              <View className="mt-4 mr-4">
-                <Image
-                  source={item.image}
-                  style={{ height: 192, width: 142 }}
-                  className="rounded-lg"
-                />
-                <Text
-                  className="text-base font-bold mt-3"
-                  style={{ color: "#333" }}
-                >
-                  {item.title}
-                </Text>
-                <Text
-                  className="text-xs font-bold mt-1"
-                  style={{ color: "#C1C0C3" }}
-                >
-                  {item.author}
-                </Text>
-              </View>
-            );
-          }}
-        />
       </ScrollView>
     </SafeAreaView>
   );
